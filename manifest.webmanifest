@@ -2,6 +2,7 @@
   "name": "以撒指北",
   "short_name": "以撒指北",
   "description": "以撒的结合 · 忏悔 全 DLC 中文图鉴",
+  "id": "./",
   "lang": "zh-CN",
   "start_url": "./index.html",
   "scope": "./",
