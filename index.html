@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
-<meta name="theme-color" content="#0d0b0a">
+<meta name="theme-color" content="#0f0c0a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>以撒图鉴 · 中文</title>
@@ -1116,15 +1116,32 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 }
 .setitem:active { border-color: var(--gold-dim); }
 .setitem-n {
-  font-size: 10.5px;
+  font-size: 10px;
   line-height: 1.3;
   text-align: center;
   color: var(--ink-3);
-  max-width: 60px;
+  max-width: 62px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  min-height: 2.6em;
 }
+/* 套装详情：相关饰品 */
+.settr { display: flex; flex-direction: column; gap: 7px; }
+.settr-row {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 7px 10px; border-radius: 10px;
+  border: 1px solid var(--line); background: rgba(255,255,255,.03);
+  color: var(--ink-2); font: inherit; text-align: left;
+}
+.settr-row:active { border-color: var(--gold-dim); }
+.settr-row.alt { border-style: dashed; }
+.settr-row.no { opacity: .6; }
+.settr-t { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.settr-t b { font-size: 13.5px; font-weight: 600; color: #ece3d4; }
+.settr-t em { font-style: normal; font-size: 11.5px; line-height: 1.45; color: var(--ink-3); }
 /* 说明页目录 */
 .toc {
   display: flex;
@@ -1891,13 +1908,23 @@ button { font-family: inherit; }
   align-items: center;
   justify-content: center;
   gap: 4px;
+}
+
+/* 按编号浏览时的「未使用编号」分隔行 */
+.gaprow {
+  margin: 9px 2px;
+  padding: 7px 12px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  color: var(--ink-3);
+  font-size: 11.5px;
+  letter-spacing: .04em;
+  text-align: center;
+  background: rgba(255,255,255,.02);
 }</style>
   <link rel="manifest" href="./manifest.webmanifest">
-  <meta name="theme-color" content="#0f0c0a">
   <link rel="icon" type="image/png" href="./icon-192.png">
   <link rel="apple-touch-icon" href="./icon-192.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="以撒指北">
 </head>
 <body>
@@ -1910,7 +1937,7 @@ button { font-family: inherit; }
         <span class="brand-mark"><img id="brandImg" alt="以撒" draggable="false"></span>
         <div class="brand-text">
           <h1>以撒指北<span class="maker">制作人 陈卿殊</span></h1>
-          <p>Repentance · 全 DLC · V6.1</p>
+          <p>Repentance · 全 DLC · V6.2</p>
         </div>
       </div>
       <div class="topbar-actions">
@@ -2333,10 +2360,10 @@ window.ISAAC_TAGS=[{"k":"angel","t":"天使","ids":[33,72,101,142,162,173,182,18
 {"k":"tech","t":"科技","ids":[68,95,152,244,267,395,524]},
 {"k":"uniquefamiliar","t":"独特跟班","ids":[11,81,238,239,276,357,436,567,569,612,626,627,635,651,667,697]}];</script>
 <script>/* 套装：成员来自 wiki 套装页标签查询；效果文案取自攻略书第十二章 */
-window.ISAAC_SETS=[{"k":"guppy","t":"嗝屁猫","effect":"获得飞行；泪弹命中后有 50% 概率生成一只蓝苍蝇（友好）","ids":[8,52,81,114,118,133,134,145,151,152,168,187,212,319,324,360,361,665,698]},
+window.ISAAC_SETS=[{"k":"guppy","t":"嗝屁猫","effect":"获得飞行；泪弹命中后有 50% 概率生成一只蓝苍蝇（友好）","ids":[8,52,81,114,118,133,134,145,151,152,168,187,212,319,324,360,361,665,698],"tr":[{"id":169,"n":"儿童涂鸦","mode":"count","note":"持有期间计入 1 件"}]},
 {"k":"beelzebub","t":"别西卜","effect":"获得飞行；大部分苍蝇类敌人变得友好","ids":[9,10,57,128,148,151,248,264,272,274,279,320,324,364,365,426,430,434,461,492,511,559,581,629,649,650,693]},
-{"k":"bob","t":"鲍勃","effect":"免疫毒气伤害，行走时留下会造成伤害的绿色水迹","ids":[42,140,149,273,324]},
-{"k":"mom","t":"好的妈妈？","effect":"角色背后会生成一个类似妈妈的菜刀跟班（不是道具妈刀），能对怪物造成接触伤害","ids":[29,30,31,39,41,55,102,110,114,139,195,199,200,217,228,324,355,357,439,508,552,604,732]},
+{"k":"bob","t":"鲍勃","effect":"免疫毒气伤害，行走时留下会造成伤害的绿色水迹","ids":[42,140,149,273,324],"tr":[{"id":71,"n":"鲍勃的膀胱","mode":"count","note":"计入套装成员"}]},
+{"k":"mom","t":"好的妈妈？","effect":"角色背后会生成一个类似妈妈的菜刀跟班（不是道具妈刀），能对怪物造成接触伤害","ids":[29,30,31,39,41,55,102,110,114,139,195,199,200,217,228,324,355,357,439,508,552,604,732],"tr":[{"id":153,"n":"妈妈的发髻","mode":"no","note":"不计入：它生成的妈妈标签道具不触发该套装"}]},
 {"k":"drug","t":"嗑药","effect":"生成一个药丸，增加 2 点伤害和 0.15 移速","ids":[13,14,70,143,240,324,345,493,496]},
 {"k":"conjoined","t":"连体","effect":"额外增加两个 45° 斜向的射击方向，伤害和射速各减 0.3","ids":[2,8,67,95,100,112,113,123,153,163,167,174,188,265,267,268,269,275,322,324,360,363,390,404,412,431,435,472,491,518,519,607,608,652,661,679,698]},
 {"k":"seraphim","t":"撒拉弗","effect":"获得飞行，给予 3 颗魂心","ids":[33,72,101,112,142,162,173,182,184,185,313,324,331,363,374,390,568,573,643,691,696]},
@@ -2347,8 +2374,8 @@ window.ISAAC_SETS=[{"k":"guppy","t":"嗝屁猫","effect":"获得飞行；泪弹�
 {"k":"spider","t":"蜘蛛宝宝","effect":"生成一只蜘蛛宝宝跟班，对触碰到的敌人造成随机状态","ids":[89,153,170,171,211,234,248,266,280,288,324,367,377,403,461,575,717]},
 {"k":"adult","t":"成人","effect":"增加一个血上限，角色声音变得更低沉","ids":[324]},
 {"k":"stompy","t":"肆意践踏","effect":"触碰石头等障碍物可以将其摧毁；受伤时有概率产生一圈石刃波","ids":[12,302,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540,541,542,543,544,545,546,547,548,549,550,551,552]},
-{"k":"beggar","t":"乞丐套装","effect":"拾取硬币、心和钥匙后，生成双倍于之前的乞丐掉落","ids":[144,278,357,388,412,488,536,712]},
-{"k":"necromancer","t":"死灵法师","effect":"进入新楼层时，死灵之书获得 10 格特殊充能","ids":[35,262]}];</script>
+{"k":"beggar","t":"乞丐套装","effect":"拾取硬币、心和钥匙后，生成双倍于之前的乞丐掉落","ids":[144,278,357,388,412,488,536,712],"tr":[{"id":166,"n":"塑型黏土","mode":"alt","note":"补齐所缺乞丐道具后可直接获得套装"}]},
+{"k":"necromancer","t":"死灵法师","effect":"进入新楼层时，死灵之书获得 10 格特殊充能","ids":[35,262],"tr":[{"id":48,"n":"遗失的书页","mode":"alt","note":"同时持有死灵之书与遗失的书页时直接获得套装"}]}];</script>
 <script>/* 顶栏图标：以撒点赞（来自 Binding of Isaac Wiki） */
 window.ISAAC_BRAND='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKwAAACgCAYAAACR84ejAAAEWklEQVR4nOzdza0cRRQF4LbFAvaIDFjwMgCCYAEhQACIOBABQAiwIAjbGTwvnIHlvb2zt56SNVfl6p863d+3G/n52T06ujpTU139dIEgTxcIIrBEEViiCCxRBJYoAksUgSWKwBJFYIkisEQRWKIILFEEligCSxSBJcoXy8V8uSzvlwO9W5YnC5/NhCWKwBJFYIlyuj51dEcdpePeZ8ISRWCJIrBEietLox31xT9/L0f6/tfflhFX77gmLFEEligCS5Tp+1BvZ2076tcPD8vM3jw+3rzu7bhX67QmLFEEligCS5Tp+k/VWdM66qjejnv2TmvCEkVgiSKwRDm87+isfUbXbXvN1olNWKIILFEElii79xOddV1X67QmLFEEligCS5TpztbSWfv0vl/VZ4SqE7efQfbutCYsUQSWKAJLlM07bO+6K9uqOu/snyFMWKIILFEEliiHr8Nad93W2T4jmLBEEViiCCxRVu+w1l3ZkglLFIElisASZbr9sGvfozTbPWJbX9+o9v83GxOWKAJLFIElyur344yeO/DtDz/evH77/v4jDr560ncJr54/W4609fW1qo679jkGW9/jZcISRWCJIrBEOXwddvZ1vzT///H73T/f+uytrc8tMGGJIrBEEVii7N5hX7+87azffHf/u/3RdchKuy66tmrdd+3rq97PVu9ei73Po22ZsEQRWKIILFE2P9uzd29Bb8ettL/v4edfbl73frdfaTtp22Ef//v35nXv9VWdsX0/259fe3/w3s/CNWGJIrBEEViiHL6XoOqsox2r9+9vve7bduhKtU7ce0/X2ve07X2PnAlLFIElisASZfMO2667teuyP/35183P7332VrVuOfr7eq29t6HaH5vGhCWKwBJFYIky3dla7bpsa+t1xKPPLWi1HbTt/JXRvRizMWGJIrBEEVii7Pqs+0+p9su2HW7tvQZHq9Zdq049eq7D2u9fdT32w3IpAksUgSXK4euwvXsNqu/G0zut55jdZ8ISRWCJIrBEOXwdtlKt07ZmX7et7uOvOmz1TIjq+ke1ez169zZYh+VSBJYoAkuU6Ttsq7fTtrbueK3eztfbYXvPtuq9/qM7a8uEJYrAEkVgiRLXYVujnXY21V6JrTvnKM+ahY8ILFEEliin77Brn521t96zsc7WWVsmLFEEligCS5TT7SUYfXbq3vbu1O/CP7eYsEQRWKIILFGmOx92a+09UGs/e7Wyd2dO76wtE5YoAksUgSXK5Tpsa+9zCkb/vbN10l4mLFEEligCS5S4DludJ7v2d/O99/2vva579c7aMmGJIrBEEViixK/DVp12VPozE87GhCWKwBJFYIlyur0EvZ223R9bPdt1VPUsVu4zYYkisEQRWKJc7nvq2c+TtXfgPhOWKAJLFIElyuX7Um+nrTrm2r+PWyYsUQSWKAJLFP2JKCYsUQSWKAJLFIElisASRWCJIrBEEViiCCxRBJYoAkuUDwAAAP//hRuNpwAAAAZJREFUAwBZChnsP0yp2wAAAABJRU5ErkJggg==';</script>
 <script>/* 双子独立头像：Jacob / Esau */
@@ -3336,6 +3363,7 @@ ISAAC.items.push(
 {id:186,n:"亚玻伦的挚友",en:"Apollyon's Best Friend",q:2,r:"B",d:"生成一只深渊蝗虫跟班，以撒射击时它会向前冲刺撞击敌人，造成接触伤害，清怪很顺手。",s:"「亚玻伦」配「深渊」可再添几只蝗虫，前期就能铺出稳定输出，很稳。",tg:["召唤","伤害"]},
 {id:187,n:"碎掉的眼镜",en:"Broken Glasses",q:3,r:"A",d:"宝箱房有50%几率额外生成一个问号道具，只能二选一；在alt路线则改为直接显示隐藏道具。",s:"配「混沌」扩大问号道具池，配「复视」可把两件都拿走，很划算。",tg:["经济","特殊"]},
 {id:188,n:"冰块",en:"Ice Cube",q:2,r:"B",d:"进入房间时有几率石化敌人，被石化的敌人无法行动；击杀石化敌人会将其冻成冰块，很安全。",s:"配「妈刀」「硫磺火」可一击打碎冰雕，清房更安全，用起来也很省心。",tg:["防御","特殊"]}
+,{id:189,n:"巴风特之印",en:"Sigil of Baphomet",q:2,r:"B",d:"每当有敌人死亡就获得 1 秒护盾；若自身护盾剩余时长已超过 5 秒则不生效。持有 2 个时护盾 1.5 秒、上限 7.5 秒，持有 3 个时 2 秒、上限 10 秒。",s:"炸弹苍蝇这类死亡爆炸会先炸到角色，护盾挡不住；破坏究极贪婪的硬币、钟乳石也不给护盾。",tg:["防御","特殊"]}
 );
 </script>
 <script>/* 卡牌数据：编号与图标槽位对齐以撒中文维基 K 编号（道具/卡牌/符文/魂石） */
@@ -3363,10 +3391,10 @@ ISAAC.cards.push(
 {id:21,n:"审判",en:"Judgement",cat:"塔罗",q:2,r:"B",d:"生成乞丐、恶魔乞丐、钥匙大师或炸弹乞丐等随机 NPC，投入硬币可换道具或资源，结果看运气。",s:"配「塔罗牌桌布」一次生成两个乞丐，「店长」硬币多，容易喂出道具。",tg:["召唤","特殊"]},
 {id:22,n:"世界",en:"The World",cat:"塔罗",q:2,r:"B",d:"显示当前层除超级隐藏房与究极隐藏房外所有房间的位置，方便规划路线和找商店、宝箱房。",s:"配合「指南针」或「蓝地图」补全隐藏房信息，「该隐」跑图会更顺。",tg:["特殊","移动"]},
 {id:23,n:"梅花2",en:"2 of Clubs",cat:"扑克",q:1,r:"B",d:"把当前持有的炸弹数量翻倍，炸弹越多收益越高，清房前用最划算。",s:"炸弹流角色（如参孙、堕落店主）配合「大爆弹先生」收益更高。",tg:[["经济","爆炸"]]},
-{id:24,n:"方片2",en:"2 of Diamonds",cat:"扑克",q:1,r:"B",d:"把当前持有的硬币数量翻倍，钱多时相当于白拿一大笔。",s:"配合「存钱罐」「会员卡」可以在商店层前快速攒钱。",tg:[["经济"]]},
+{id:24,n:"方片2",en:"2 of Diamonds",cat:"扑克",q:1,r:"B",d:"使用后把当前持有的硬币翻倍，硬币越多收益越大；上限 99 封顶，超出部分不保留，所以最好在 90 以下时再用。",s:"配合「存钱罐」「会员卡」可以在商店层前快速攒钱。",tg:[["经济"]]},
 {id:25,n:"黑桃2",en:"2 of Spades",cat:"扑克",q:1,r:"B",d:"把当前持有的钥匙数量翻倍，钥匙多时用能让后半程不缺钥匙。",s:"开宝箱房前用，配合「钥匙大师」滚得更多。",tg:[["经济"]]},
 {id:26,n:"红桃2",en:"2 of Hearts",cat:"扑克",q:1,r:"C",d:"把当前红心数量翻倍（等同按现有红心回血），残血时效果最好。",s:"血量上限高的角色（抹大拉）收益最大。",tg:[["回血"]]},
-{id:31,n:"鬼牌",en:"Joker",cat:"扑克",q:2,r:"A",d:"传送到本层的恶魔房或天使房，即使本层没开也能强行进入。",s:"想拿恶魔交易或天使房道具时，相当于多一次机会。",tg:[["传送","特殊"]]},
+{id:31,n:"鬼牌",en:"Joker",cat:"扑克",q:2,r:"A",d:"使用后立刻把角色送到本层的恶魔房或天使房，即使本层没自然开启也能强行进入，是白嫖恶魔交易或天使房道具的常用手段。",s:"想拿恶魔交易或天使房道具时，相当于多一次机会。",tg:[["传送","特殊"]]},
 {id:32,n:"冰雹符文",en:"Rune of Hagalaz",cat:"符文",q:1,r:"C",d:"使用后摧毁房间内全部可破坏障碍物，包括岩石、便便、蘑菇、骷髅和瓮，但对钥匙方块无效。适合清理藏有特殊岩石的房间。",s:"适合 该隐、参孙 这类缺资源的角色清石头房捡掉落；与 塔罗牌桌布 不联动。",tg:["清房","特殊"]},
 {id:33,n:"收获符文",en:"Rune of Jera",cat:"符文",q:3,r:"A",d:"使用后复制房间内所有掉落物和箱子，包括商店里待售的商品（复制品可免费拿）。无法复制其他 收获符文 和饰品。",s:"留到 宝箱层、黑暗层 开局四箱房使用收益最大；配 空白卡牌 可再次触发复制。",tg:["经济","特殊"]},
 {id:34,n:"马骑符文",en:"Rune of Ehwaz",cat:"符文",q:3,r:"A",d:"使用后生成通往下一层的活板门；站在带装饰图案的地砖上使用则必定生成夹层入口，每层仅一次。",s:"适合 游魂、店长 跳过危险楼层；站在装饰地砖上可稳定开出夹层。",tg:["移动","特殊"]},
@@ -3453,7 +3481,7 @@ ISAAC.chars.push(
 {id:10,n:"游魂",en:"The Lost",unlock:"持有饰品寻人启事（使用角色以撒击败暗室BOSS羔羊解锁）的情况下在献祭房献祭死亡",hp:"无",dmg:"3.50",tears:"2.73",speed:"1.20",range:"6.50",shot:"1.00",luck:"0",items:["主动道具永恒六面骰（无需解锁），道具神圣屏障（不会显示在道具栏）（贪婪机存款879解锁）"],d:"血量固定为半颗魂心并且不可见（当神圣屏障效果存在时血量处会显示标志），无法拾取红心、骨心等心，可以拾取魂心、黑心和金心，但是拾取后血量也会恢复为半颗魂心，受伤后就会死亡（包括卖血机或者黑小孩这类受伤，神圣屏障抵挡的伤害不算受伤），可以免费进行恶魔交易，若恶魔房有多个道具，进行一次恶魔交易后其它道具会消失",r:"C",tips:"靠「神圣屏障」「九命猫」类复活道具续命，优先拿防御与无敌帧道具。"},
 {id:11,n:"莉莉丝",en:"Lilith",unlock:"使用角色阿撒泻勒通关贪婪模式",hp:"1 红心 2 黑心",dmg:"3.50",tears:"2.73",speed:"1.00",range:"6.50",shot:"1.00",luck:"0",items:["主动道具朋友盒（无需解锁），被动道具淫魔（无需解锁）和恶魔受胎（无需解锁）"],d:"角色具有蒙眼（无法发射泪弹）效果，淫魔和作孽双子的伤害会更高",r:"A",tips:"堆伤害与跟班强化（BFFS!、好友名单），主动道具仍可正常使用。"},
 {id:12,n:"店主",en:"The Keeper",unlock:"贪婪机存款1000解锁（存爆一次）",hp:"2 硬币心",dmg:"4.20",tears:"0.83",speed:"1.00",range:"6.50",shot:"1.00",luck:"-2",items:["主动道具木制镍币（使用店长击败教堂BOSS以撒解锁），饰品商店钥匙（使用店长击败阴间BOSS撒旦解锁），一个血上限（使用店长击败蓝子宫BOS"],d:"血条为硬币心，血量上限为3，三发泪弹，每次受伤时会扣除一整颗心，并且受伤不会扣除恶魔房概率，通过拾取硬币来回复生命，游戏生成心时会自动变为蓝苍蝇（友好），恶魔交易改为使用金币交易，对于献血机或者道具小猪存钱罐这类生成硬币的道具会将生成的硬币数改为0~1，会自动将药丸体力下降转化为体力上升",r:"B",tips:"金币既是血也是钱，优先拿「钱袋」「存钱罐」和射速道具。"},
-{id:13,n:"亚玻伦",en:"Apollyon",unlock:"击败超级撒旦",hp:"2 红心",dmg:"3.50",tears:"2.73",speed:"1.00",range:"6.50",shot:"1.00",luck:"0",items:["主动道具虚空（无需解锁）"],d:"虚空可以吸收道具并将其转化为属性，是滚雪球型角色。",r:"A",tips:"把没用的道具全喂虚空，属性成长非常夸张，别怕拿垃圾道具。"},
+{id:13,n:"亚玻伦",en:"Apollyon",unlock:"击败超级撒旦",hp:"2 红心",dmg:"3.50",tears:"2.73",speed:"1.00",range:"6.50",shot:"1.00",luck:"0",items:["主动道具虚空（无需解锁）"],d:"初始 2 红心、3.50 伤害，自带主动道具「虚空」：把地上的道具吞下去随机换成属性提升，吃得越多涨得越快，是典型的前期弱、后期夸张的滚雪球角色。",r:"A",tips:"把没用的道具全喂虚空，属性成长非常夸张，别怕拿垃圾道具。"},
 {id:14,n:"遗骸",en:"The Forgotten",unlock:"使用主动道具妈妈的铲子在暗室挖开碎土块",hp:"2 骨心",dmg:"5.25",tears:"1.37",speed:"1.00",range:"6.50",shot:"1.00",luck:"0",items:["无"],d:"拥有两种形态（使用ctrl键切换），分别为骨头形态和灵魂形态，分别计算血条（血上限都为6）。骨头形态的血条为骨心，并且攻击方式为使用骨棒近战（蓄力可以丢出，无需蓄满就可丢出），拾取魂心或黑心时会自动给灵魂形态。灵魂形态的血条为魂心，攻击方式为泪弹，拾取红心或骨心时会自动给骨头形态，具有灵体泪弹和飞行能力，切换到灵魂形态时骨头会停留在原地，会自动吸附靠近的敌对弹幕，并且有一根锁链限制灵魂的移动",r:"A",tips:"骨心靠骨心道具与「骨髓」回复，近战贴脸是主要输出手段。"},
 {id:15,n:"伯大尼",en:"Bethany",unlock:"使用角色拉撒路在困难模式没有死亡的情况下通过第四章（子宫）",hp:"3 红心",dmg:"3.50",tears:"2.73",speed:"1.00",range:"6.50",shot:"1.00",luck:"0",items:["道具美德之书（无需解锁）"],d:"获得的魂心不会用于抵挡伤害，而是用于给主动道具充能，半颗魂心视作一格充能，优先使用普通的充能条，充能条不足时用魂心补充，拾取魂心时自动存储为魂心充能，上限为99点充能",r:"A",tips:"魂心全部攒成灵魂，配合美德之书召唤灵火，攻防一体。"},
 {id:16,n:"雅各和以扫",en:"Jacob and Esau",unlock:"击败尸宫的见证者（母亲）",hp:"各 3 红心 / 1 红 1 魂",dmg:"2.75 / 3.75",tears:"3.01 / 2.63",speed:"1.00",range:"5.00 / 8.00",shot:"1.15 / 0.85",luck:"1 / -1",items:["无"],d:"两个角色，白色的为雅各（主角色，一般叫小白），红色的为以扫（副角色，一般叫小红），两个角色移速和三种基础资源共同计算，分开计算属性与道具（任务道具共同计算），使用炸弹时会分别在各自脚下生成一个炸弹（只消耗一个炸弹），操作时，双子会共同向同一个方向移动和射击（按住ctrl键可以将小红的移动锁定，只让小白移动），当一个角色死亡时，游戏结束",r:"C",tips:"把输出道具集中给以扫（远程），雅各负责吃血与防御道具。"},
@@ -3470,7 +3498,7 @@ ISAAC.chars.push(
 {id:27,n:"堕化游魂",en:"Tainted Lost",unlock:"每一个表角色都有一个对应的堕化角色，一般称为里角色，每一个里角色都需要用对应的表角色走回溯线来到家中，开启红房间之后触碰地上的角色，出现成就弹窗之后就说明已经解锁了第一次回溯到家中时，开启妈妈的箱子必定会获得红钥匙，之后要想在回溯时稳定获得开启红房间的物品，需要在回溯之前的楼层，将饰品丢在BOSS房或者宝箱房，在回溯时会自动转化为红钥匙碎片，相当于一次性的红钥匙PS：注意等成就弹窗跳出来之后再离开房间，不然就白跑一趟了......",hp:"无",dmg:"4.55",tears:"2.73",speed:"1.20",range:"6.50",shot:"1.00",luck:"0",items:["卡牌神圣卡"],d:"与表罗一样，只不过没有神圣屏障的效果，当生成卡牌时有10%的概率将其转化为神圣卡，当生成道具时，若道具品质为2或者以下时，有20%概率被重置为其它道具，并且拥有独立的道具生成规则，只会生成带有“攻击性”标签的道具（固定生成的道具不受影响）",r:"B",tips:"高风险高回报，优先拿神圣屏障与复活类道具保命。"},
 {id:28,n:"堕化莉莉丝",en:"Tainted Lilith",unlock:"每一个表角色都有一个对应的堕化角色，一般称为里角色，每一个里角色都需要用对应的表角色走回溯线来到家中，开启红房间之后触碰地上的角色，出现成就弹窗之后就说明已经解锁了第一次回溯到家中时，开启妈妈的箱子必定会获得红钥匙，之后要想在回溯时稳定获得开启红房间的物品，需要在回溯之前的楼层，将饰品丢在BOSS房或者宝箱房，在回溯时会自动转化为红钥匙碎片，相当于一次性的红钥匙PS：注意等成就弹窗跳出来之后再离开房间，不然就白跑一趟了......",hp:"1 红心 2 黑心",dmg:"3.50",tears:"2.73",speed:"1.00",range:"6.50",shot:"1.00",luck:"0",items:["无"],d:"角色具有蒙眼（无法发射泪弹）效果，攻击时会从腹部发射出一个脐带宝宝（与主动道具格罗生成的类似），脐带宝宝会自动向怪物发射泪弹，射出宝宝时会对路径上的怪物造成伤害和击退，松开发射键后会将宝宝收回",r:"A",tips:"胎儿甩出后能弹回，贴脸伤害极高，配合近战强化道具。"},
 {id:29,n:"堕化店主",en:"Tainted Keeper",unlock:"每一个表角色都有一个对应的堕化角色，一般称为里角色，每一个里角色都需要用对应的表角色走回溯线来到家中，开启红房间之后触碰地上的角色，出现成就弹窗之后就说明已经解锁了第一次回溯到家中时，开启妈妈的箱子必定会获得红钥匙，之后要想在回溯时稳定获得开启红房间的物品，需要在回溯之前的楼层，将饰品丢在BOSS房或者宝箱房，在回溯时会自动转化为红钥匙碎片，相当于一次性的红钥匙PS：注意等成就弹窗跳出来之后再离开房间，不然就白跑一趟了......",hp:"2 硬币心",dmg:"3.50",tears:"0.53",speed:"1.00",range:"6.50",shot:"1.00",luck:"-2",items:["无"],d:"与表店长一样都是硬币心，血量上限为2，商店无需钥匙就可以进入并且商店会有不同的布局（大部分情况会是更好的商店），房间内自然生成的除任务道具以外的所有道具（例如宝箱房、天使房等的道具）都会需要使用钱进行交易。当小怪被击杀时，会生成一个1.5秒后消失的随机硬币，精英怪生成两个，BOSS则会生成更多的硬币并且存在时间更长，部分情况怪物被击杀时不会生成硬币（例如由某些怪物生成的小怪和挑战房第一波以后波次的怪物）",r:"B",tips:"清怪狂掉钱，配合「钱袋」把金币转成血量与输出。"},
-{id:30,n:"堕化亚玻伦",en:"Tainted Apollyon",unlock:"每一个表角色都有一个对应的堕化角色，一般称为里角色，每一个里角色都需要用对应的表角色走回溯线来到家中，开启红房间之后触碰地上的角色，出现成就弹窗之后就说明已经解锁了第一次回溯到家中时，开启妈妈的箱子必定会获得红钥匙，之后要想在回溯时稳定获得开启红房间的物品，需要在回溯之前的楼层，将饰品丢在BOSS房或者宝箱房，在回溯时会自动转化为红钥匙碎片，相当于一次性的红钥匙PS：注意等成就弹窗跳出来之后再离开房间，不然就白跑一趟了......",hp:"2 红心",dmg:"3.50",tears:"2.23",speed:"1.00",range:"6.50",shot:"1.00",luck:"0",items:["主动道具无底坑（副手主动），一个造成100%角色伤害的无底坑蝗虫"],d:"虚空会生成蝗虫跟班，每吸收一个道具就多一只蝗虫。",r:"A",tips:"大量吸收道具堆蝗虫数量，跟班越多输出越猛。"},
+{id:30,n:"堕化亚玻伦",en:"Tainted Apollyon",unlock:"每一个表角色都有一个对应的堕化角色，一般称为里角色，每一个里角色都需要用对应的表角色走回溯线来到家中，开启红房间之后触碰地上的角色，出现成就弹窗之后就说明已经解锁了第一次回溯到家中时，开启妈妈的箱子必定会获得红钥匙，之后要想在回溯时稳定获得开启红房间的物品，需要在回溯之前的楼层，将饰品丢在BOSS房或者宝箱房，在回溯时会自动转化为红钥匙碎片，相当于一次性的红钥匙PS：注意等成就弹窗跳出来之后再离开房间，不然就白跑一趟了......",hp:"2 红心",dmg:"3.50",tears:"2.23",speed:"1.00",range:"6.50",shot:"1.00",luck:"0",items:["主动道具无底坑（副手主动），一个造成100%角色伤害的无底坑蝗虫"],d:"初始 2 红心、3.50 伤害，副手主动「无底坑」把道具转化成蝗虫跟班，每只按 100% 角色伤害输出；吞进去的道具越强，蝗虫越值钱，走的是纯跟班流。",r:"A",tips:"大量吸收道具堆蝗虫数量，跟班越多输出越猛。"},
 {id:31,n:"堕化遗骸",en:"Tainted Forgotten",unlock:"每一个表角色都有一个对应的堕化角色，一般称为里角色，每一个里角色都需要用对应的表角色走回溯线来到家中，开启红房间之后触碰地上的角色，出现成就弹窗之后就说明已经解锁了第一次回溯到家中时，开启妈妈的箱子必定会获得红钥匙，之后要想在回溯时稳定获得开启红房间的物品，需要在回溯之前的楼层，将饰品丢在BOSS房或者宝箱房，在回溯时会自动转化为红钥匙碎片，相当于一次性的红钥匙PS：注意等成就弹窗跳出来之后再离开房间，不然就白跑一趟了......",hp:"3 魂心",dmg:"5.25",tears:"1.37",speed:"1.00",range:"6.50",shot:"1.00",luck:"0",items:["无"],d:"魂心角色，里遗骸由骨头和灵魂两个部分组成，骨头不可移动且不会受伤，可以像角色表骨哥一样攻击，灵魂不能攻击，在触碰到骨头时可以将其举起，举起时按下发射键将骨头丢出，可对路径上的敌人造成接触伤害，当拾取或使用道具、卡牌等时均为骨头使用",r:"A",tips:"扔骨棒打远程，灵魂负责走位与吃血，熟练后爆发很高。"},
 {id:32,n:"堕化伯大尼",en:"Tainted Bethany",unlock:"每一个表角色都有一个对应的堕化角色，一般称为里角色，每一个里角色都需要用对应的表角色走回溯线来到家中，开启红房间之后触碰地上的角色，出现成就弹窗之后就说明已经解锁了第一次回溯到家中时，开启妈妈的箱子必定会获得红钥匙，之后要想在回溯时稳定获得开启红房间的物品，需要在回溯之前的楼层，将饰品丢在BOSS房或者宝箱房，在回溯时会自动转化为红钥匙碎片，相当于一次性的红钥匙PS：注意等成就弹窗跳出来之后再离开房间，不然就白跑一趟了......",hp:"1 魂心",dmg:"3.50",tears:"2.73",speed:"1.00",range:"6.50",shot:"1.00",luck:"0",items:["主动道具所罗门魔典（副手主动）"],d:"魂心角色，但是可以拾取红心，拾取的红心用于给主动道具充能，半颗魂心视作一格充能，优先使用普通的充能条，充能条不足时用魂心补充，拾取魂心时自动存储为魂心充能，上限为99点充能（与表伯大尼类似）",r:"A",tips:"把灵魂攒到关键 BOSS 房再换道具，前期靠魂心道具过度。"},
 {id:33,n:"堕化雅各",en:"Tainted Jacob",unlock:"每一个表角色都有一个对应的堕化角色，一般称为里角色，每一个里角色都需要用对应的表角色走回溯线来到家中，开启红房间之后触碰地上的角色，出现成就弹窗之后就说明已经解锁了第一次回溯到家中时，开启妈妈的箱子必定会获得红钥匙，之后要想在回溯时稳定获得开启红房间的物品，需要在回溯之前的楼层，将饰品丢在BOSS房或者宝箱房，在回溯时会自动转化为红钥匙碎片，相当于一次性的红钥匙PS：注意等成就弹窗跳出来之后再离开房间，不然就白跑一趟了......",hp:"3 红心",dmg:"3.50",tears:"2.73",speed:"1.00",range:"6.50",shot:"1.00",luck:"0",items:["主动道具孤魂铁索（副手主动）"],d:"当里雅各进入新楼层一段时间后，房间内地上会出现一个裂口，并且生成一个里以扫，在没有敌人的房间内使用孤魂铁索会直接生成里以扫，出现时会在周围生成一个火焰环，能对怪物以及角色造成伤害。里以扫不会受到任何伤害，并且会一直靠近玩家，离玩家越近时速度越慢，在接近玩家后，会朝着玩家的方向进行冲刺，冲刺时会对路径上的怪物造成高额火焰伤害，当里以扫生成后，使用孤魂铁索会默认束缚里以扫，束缚解除时会立刻向玩家的方向冲刺，在里以扫被束缚期间再次使用孤魂铁索（即使充能没满也可使用）则会立刻解除束缚。每一层第一次被里以扫攻击到后，角色会变",r:"C",tips:"把以扫当成会动的障碍物利用，用门和房间卡住他。"}
@@ -3484,25 +3512,25 @@ ISAAC.rooms.push(
 {id:"boss",n:"头目房",en:"Boss Room",how:"每层固定生成，通常在楼层尽头",cost:"无",d:"击败头目后生成一件头目房道具池道具、若干红心（数量随难度）以及通往下一层的活板门。",r:"S",tips:"进 BOSS 房前把血量补满，残血可以用房间里的红心回血再打。"},
 {id:"miniboss",n:"小头目房",en:"Miniboss Room",how:"随机生成，外观与普通房间相同",cost:"无",d:"房间内会出现一只小头目（如贪婪、坎卜斯等），清房后按普通房间规则给奖励。",r:"B",tips:"小头目血量高，优先清小怪再集火，别被围。"},
 {id:"treasure",n:"宝箱房",en:"Treasure Room",how:"前三章生成；从第二层起需要 1 把钥匙",cost:"1 把钥匙",d:"固定给一件宝箱房道具池的道具，偶尔出现两件；小概率没有道具底座而只有掉落。",r:"S",tips:"钥匙优先留给宝箱房，宁可不开商店。"},
-{id:"planetarium",n:"星象房",en:"Planetarium",how:"不进入宝箱房时概率更高；也可用「星象图」等道具指定",cost:"无",d:"只产出星象房道具池的道具，池子小但质量整体偏高。",r:"A",tips:"想开星象房就整层跳过宝箱房，收益经常比一件普通道具高。"},
+{id:"planetarium",n:"星象房",en:"Planetarium",how:"不进入宝箱房时概率更高；也可用「星象图」等道具指定",cost:"无",d:"只产出星象房道具池，池子只有十几件但整体质量很高，几乎都是星座主题的强力道具；本层不进宝箱房时更容易出现。",r:"A",tips:"想开星象房就整层跳过宝箱房，收益经常比一件普通道具高。"},
 {id:"shop",n:"商店",en:"Shop",how:"前三章生成；从第二层起需要 1 把钥匙",cost:"金币",d:"出售金币购买的道具与掉落，初始 2 个货位，捐款机升级后最多 6 个。",r:"A",tips:"先看货再决定钥匙分配，遇到「会员卡」类道具可解锁地下商店。"},
-{id:"secret-shop",n:"地下商店",en:"Secret Shop",how:"持有会员卡时，每层商店内会生成暗门",cost:"金币（昂贵）",d:"出售各种道具与掉落，价格很高，内有竖梯可以直接离开。",r:"A",tips:"钱多时再进，容易一件都买不起。"},
+{id:"secret-shop",n:"地下商店",en:"Secret Shop",how:"持有会员卡时，每层商店内会生成暗门",cost:"金币（昂贵）",d:"需要会员卡才稳定开出的暗店，出售随机道具、饰品与掉落，价格比普通商店贵；房内有竖梯可以直接离开，不占通关路线。",r:"A",tips:"钱多时再进，容易一件都买不起。"},
 {id:"arcade",n:"赌博房",en:"Arcade",how:"偶数层且上一层结束时持有超过 5 枚硬币",cost:"1 枚硬币",d:"需要 1 枚硬币开门，内部有老虎机、乞丐、预言机等赌博设施。",r:"B",tips:"钱多再来，血少别赌，输光硬币很常见。"},
 {id:"challenge",n:"挑战房",en:"Challenge Room",how:"当前总血量不低于心之容器数量",cost:"无",d:"内有 1~3 个宝箱或 1 件道具 + 4 个宝箱，拿取后要连打 3 波敌人。",r:"A",tips:"满血再进，打完的奖励通常值回票价。"},
 {id:"boss-challenge",n:"头目挑战房",en:"Boss Challenge Room",how:"总血量不超过 1 颗完整的心",cost:"无",d:"布局与挑战房类似，拿取后要连打 2 波头目（第四章起 3 波），必给一件头目房道具池道具。",r:"B",tips:"残血时才会出现，进去前确保有复活或无敌手段。"},
 {id:"curse",n:"诅咒房",en:"Curse Room",how:"随机生成，门上有尖刺",cost:"半颗心",d:"进出房间都会受到伤害；飞行可以免去进入的伤害，但离开时仍会受伤。",r:"B",tips:"飞行能省一次伤害，血少时慎入。",pro:["卡无敌帧进出：进刺房前先吃钝刀片触发无敌帧，能免掉进门那一下伤害；带献血袋时可以在进出前各用一次，用 1 颗红心顶掉黑心/蓝心的损失。"]},
 {id:"sacrifice",n:"献祭房",en:"Sacrifice Room",how:"每层约 1/7 概率生成；总血量 ≥ 心之容器数时提升到 5/14。生成后有 1/50（钥匙 ≥ 2 时 27/125）概率被替换成骰子房。",cost:"红心/魂心",d:"房间正中是地刺，踩一次受一次伤害就算一次献祭。奖励只取决于「献祭次数」，与你剩余血量、幸运值都无关；次数越高奖励越好，直到第 12 次。",r:"A",tips:"想刷天使房就踩到 3 次拿「你被祝福了」；第 7 次出魂心或道具就可以收手。飞行道具踩不上刺，但饰品「老茧」会挡住献祭，要先丢掉。",detail:["1~2 次：50% 无效果，50% 掉 1 枚硬币（没有炸弹时还有额外判定给炸弹）","3 次：50% 获得「你被祝福了」，天使房转换率 +15%","4 次：开始稳定给箱子、红心类奖励","5~6 次：逐级升级为魂心/道具类奖励","7 次：出现魂心或道具，最常用的停手点","10 次：收益明显变好，适合血多的角色再踩","11 次：召唤乌列/加百列，击败后掉钥匙碎片（开恶魔房/天使房用）","12 次：把角色传送到暗室（Dark Room）"]},
-{id:"secret",n:"隐藏房",en:"Secret Room",how:"四周被 2~4 个房间包围，需用炸弹炸开",cost:"1 个炸弹",d:"地图上不显示，内有商店店主与各种掉落，也可能有道具。",r:"A",tips:"贴着三面墙的房间最可能是隐藏房，开局先看地图边缘。",pro:["刷心：部分隐藏房会把地上所有心替换成特定颜色（比如超级隐藏房全变白心），带上搬家盒、红心卡这类能生成心的道具进去，可以刷出大量血。"]},
-{id:"super-secret",n:"超级隐藏房",en:"Super Secret Room",how:"只有 1 个房间与它相邻",cost:"1 个炸弹",d:"只有一面墙连接普通房间，内部以掉落物为主。",r:"B",tips:"找到只有一个邻接房间的墙，炸中间那格成功率高。",pro:["刷心：超级隐藏房常见的白心房，带「搬家盒」「红心卡」进去可以刷出一堆白心。"]},
+{id:"secret",n:"隐藏房",en:"Secret Room",how:"四周被 2~4 个房间包围，需用炸弹炸开",cost:"1 个炸弹",d:"地图上不显示，要用炸弹炸开入口；内部固定生成商店店主与随机掉落，也可能有道具，是最常见的白嫖掉落点。",r:"A",tips:"贴着三面墙的房间最可能是隐藏房，开局先看地图边缘。",pro:["刷心：部分隐藏房会把地上所有心替换成特定颜色（比如超级隐藏房全变白心），带上搬家盒、红心卡这类能生成心的道具进去，可以刷出大量血。"]},
+{id:"super-secret",n:"超级隐藏房",en:"Super Secret Room",how:"只有 1 个房间与它相邻",cost:"1 个炸弹",d:"只有一面墙与普通房间相连，炸弹要从那个方向炸；内部固定是掉落物（红心、硬币、炸弹、钥匙），常见全白心的版本，适合刷血。",r:"B",tips:"找到只有一个邻接房间的墙，炸中间那格成功率高。",pro:["刷心：超级隐藏房常见的白心房，带「搬家盒」「红心卡」进去可以刷出一堆白心。"]},
 {id:"ultra-secret",n:"究极隐藏房",en:"Ultra Secret Room",how:"需用红钥匙等道具开出相邻红色房间后才能找到",cost:"1 把红钥匙",d:"不需要炸弹即可进入，内有多个商店店主与一件究极隐藏房道具池道具。",r:"A",tips:"拿红钥匙后优先往地图边缘试，收益稳定。"},
 {id:"library",n:"图书馆",en:"Library",how:"随机生成，需要 1 把钥匙",cost:"1 把钥匙",d:"产出书类道具、卡牌、符文与饰品，书本数量多时很适合法术流。",r:"B",tips:"走主动道具/卡牌流时价值很高，否则钥匙留给宝箱房。"},
 {id:"devil",n:"恶魔房",en:"Devil Room",how:"每层击败头目后按概率开启（受伤会降低概率）",cost:"红心或魂心",d:"用血量换取强力道具，是后期强度主要来源；也可能出现红宝箱、黑心与地刺。",r:"S",tips:"满血再进，用红心容器换道具通常比留血更划算。",pro:["跳道具：恶魔房两个道具并排、必须拿第一个才能拿第二个时，把饰品或卡牌丢地上再捡起来——拾取饰品/卡牌不触发拿道具的交互，可以卡掉第一个道具，直接换到后面那个。","一血白嫖：只剩 1 格血又带着钢铁双蛋时，先签下恶魔交易，再立刻嗑药回血，等于用 1 格血换到道具。","看货不掉概率：恶魔房刷得不好时直接拍后悔药重开本层，不会掉恶魔房/天使房的出现概率。"]},
 {id:"angel",n:"天使房",en:"Angel Room",how:"不进入恶魔房时概率开启，献祭房可强制开启",cost:"无",d:"内有 1~2 座天使雕像与道具、魂心或永恒之心，免费获取。",r:"S",tips:"想走天使房就别碰恶魔房，献祭房能稳定刷出来。",pro:["看货不掉概率：天使房刷得不好时直接拍后悔药重开本层，不会掉恶魔房/天使房的出现概率。","天使雕像可以炸：想要钥匙碎片就炸雕像打天使，击败后必掉碎片。"]},
-{id:"vault",n:"宝库",en:"Vault",how:"随机生成，门上有金币图案",cost:"金币",d:"房间内是大量金币、宝箱与掉落，需要用金币开门。",r:"A",tips:"钱够就开，通常能赚回门票。"},
+{id:"vault",n:"宝库",en:"Vault",how:"随机生成，门上有金币图案",cost:"金币",d:"用金币开门，内部是大堆硬币、宝箱与掉落；通常能赚回门票，钱不够时开门会失败，白白浪费机会。",r:"A",tips:"钱够就开，通常能赚回门票。"},
 {id:"dice",n:"骰子房",en:"Dice Room",how:"由献祭房按概率替换而来（1/50，钥匙 ≥ 2 时 27/125），需要 2 把钥匙开门；与献祭房互斥，同层不会同时出现。",cost:"2 把钥匙",d:"房间正中是 5×5 的骰子地毯，随机显示 1~6 点。踩上去（只有中心 4×4 区域有效）触发一次随机化效果，每个骰子房只能触发一次。",r:"A",tips:"5 点房可以重开本层，用来反复刷同一层的妈心/它还活着；骰子面上的掉落物别直接踩，会误触效果，用炸弹弹开。",detail:["1 点：把角色所有道具重置回它们所属道具池的随机道具（四面骰效果）","2 点：重置当前房间的所有掉落物（二十面骰效果）","3 点：重置本层所有房间的掉落物与饰品（含商店货架）","4 点：重置本层所有基座道具（六面骰效果，不影响恶魔房/天使房/商店）","5 点：重置并重新开始本层（遗忘药效果），可反复刷本层 BOSS","6 点：同时触发 1+3+4 点效果，并且会重置所有角色的道具"]},
-{id:"bedroom",n:"卧室",en:"Bedroom",how:"随机生成，需要 1 把钥匙",cost:"1 把钥匙",d:"内有床，可以睡一觉恢复全部红心，也可能有道具与掉落。",r:"B",tips:"残血时是稳定的回血点，和「睡袋」类道具联动。"},
-{id:"black-market",n:"黑市",en:"Black Market",how:"通过夹层或特定道具进入",cost:"金币",d:"隐藏的商店，出售稀有道具，价格昂贵。",r:"A",tips:"钱多时是全游戏性价比最高的地方之一。"},
-{id:"error",n:"错误房",en:"I AM ERROR",how:"地图边界外或使用特定道具时进入",cost:"无",d:"内含大量道具与掉落，但出口位置随机，可能被困住。",r:"A",tips:"进去先记路，没有传送道具时别乱走。"},
+{id:"bedroom",n:"卧室",en:"Bedroom",how:"随机生成，需要 1 把钥匙",cost:"1 把钥匙",d:"需要钥匙开门，房内有床，睡一觉能回满红心，还可能附带道具或掉落，是残血时最稳的回血点。",r:"B",tips:"残血时是稳定的回血点，和「睡袋」类道具联动。"},
+{id:"black-market",n:"黑市",en:"Black Market",how:"通过夹层或特定道具进入",cost:"金币",d:"藏在地图外的商店，出售稀有道具与掉落，价格昂贵，但常出普通商店买不到的东西，钱多时性价比很高。",r:"A",tips:"钱多时是全游戏性价比最高的地方之一。"},
+{id:"error",n:"错误房",en:"I AM ERROR",how:"地图边界外或使用特定道具时进入",cost:"无",d:"I AM ERROR 房：内部堆满道具与掉落，但出口位置随机，没有传送类道具时会被困住，进去前先记住来路。",r:"A",tips:"进去先记路，没有传送道具时别乱走。"},
 {id:"mirror",n:"镜中世界",en:"Mirror World",how:"在下水道层使用「白色镜子」等道具",cost:"无",d:"镜像世界的房间布局与当前层对称，可拿到额外道具与「刀片」。",r:"A",tips:"下水道层必探，镜像世界经常白给一件道具。"}
 );
 </script>
@@ -4016,6 +4044,7 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
     D.sets = (window.ISAAC_SETS || []).map(function (s) {
       return {
         kind: 'set', id: s.k, n: s.t, en: '', d: s.effect, effect: s.effect, ids: s.ids || [],
+        tr: s.tr || [],
         q: 3, r: 'A', tg: [], _shape: [], _eff: []
       };
     });
@@ -4044,6 +4073,7 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
 
     ['items', 'trinkets', 'cards', 'chars', 'rooms'].forEach(function (k) {
       D[k].forEach(function (e) {
+        var isItem = (k === 'items');
         e._hay = [
           e.n, e.en, e.id, e.r,
           (e.tg || []).join(' '),
@@ -4087,7 +4117,7 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
 
         // 词条：外观 + 效果
         var shapeMap = window.ISAAC_SHAPE || {};
-        var shapeKeys = shapeMap[e.id] || [];
+        var shapeKeys = isItem ? (shapeMap[e.id] || []) : [];
         e._shape = shapeKeys;
         var eff = (e.tg || []).filter(function (t) { return t !== '特殊'; });
         if (/传送/.test(e.d || '')) eff.push('传送');
@@ -4095,11 +4125,13 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
         if (/随机|概率/.test(e.d || '')) eff.push('随机');
         e._eff = eff;
 
-        var tagList = window.ISAAC_TAGS || [];
+        // 标签 / 套装 / 道具池 / 外观词条 都是「按道具 id」建立的数据表，
+        // 而饰品与道具共用同一套数字 id，必须按 kind 隔离，否则饰品会串到同号道具的数据。
+        var tagList = isItem ? (window.ISAAC_TAGS || []) : [];
         var myTags = [];
         tagList.forEach(function (tg) { if ((tg.ids || []).indexOf(e.id) >= 0) myTags.push(tg.t); });
         e._tags = myTags;
-        var setList = window.ISAAC_SETS || [];
+        var setList = isItem ? (window.ISAAC_SETS || []) : [];
         var mySets = [];
         setList.forEach(function (st) { if (st.ids.indexOf(e.id) >= 0) mySets.push(st); });
         e._sets = mySets;
@@ -4111,7 +4143,7 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
           beggar: '乞丐', 'secret-shop': '地下商店', arcade: '赌博房', vault: '宝库', bedroom: '卧室'
         };
         var myPools = [];
-        var pools = (window.ISAAC && window.ISAAC.pools) || {};
+        var pools = isItem ? ((window.ISAAC && window.ISAAC.pools) || {}) : {};
         Object.keys(pools).forEach(function (k) {
           if ((pools[k] || []).indexOf(e.id) >= 0) myPools.push(POOL_NAME[k] || k);
         });
@@ -4577,7 +4609,7 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
       html += '<button class="setcard" data-kind="set" data-id="' + s.id + '">' +
         tileHTML(s, '') +
         '<span class="setcard-body">' +
-          '<span class="setcard-h"><b>' + esc(s.n) + '</b><em>' + s.ids.length + ' 件</em></span>' +
+          '<span class="setcard-h"><b>' + esc(s.n) + '</b><em>' + s.ids.length + ' 道具' + ((s.tr && s.tr.length) ? ' · ' + s.tr.length + ' 饰品' : '') + '</em></span>' +
           '<span class="setcard-p">' + esc((s.effect || '').slice(0, 40)) + (s.effect && s.effect.length > 40 ? '…' : '') + '</span>' +
         '</span>' +
       '</button>';
@@ -4917,6 +4949,10 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
     var arr = filtered();
     state.shown = Math.min(state.shown, Math.max(arr.length, PAGE));
     var slice = arr.slice(0, state.shown);
+    // 按编号浏览且没有任何筛选时，把游戏里未使用的编号穿插成分隔行，避免看起来像漏数据
+    var showGapRows = (state.view === 'items' && state.sub === 'item' && state.sort === 'id' &&
+      state.grid !== 'grid' && !state.q && state.filter === 'all' && state.pool === 'all' &&
+      !(state.tags || []).length);
 
     var head = $('listhead');
     var countText = state.view === 'items'
@@ -4966,6 +5002,17 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
       }).join('') + '</div>';
     } else if (state.view === 'items' && state.sub !== 'set' && state.grid === 'grid') {
       html = '<div class="igrid">' + slice.map(igHTML).join('') + '</div>';
+    } else if (showGapRows) {
+      var prevId = 0;
+      html = slice.map(function (e) {
+        var id = parseInt(e.id, 10) || 0;
+        var gap = '';
+        for (var g = prevId + 1; g < id; g++) {
+          gap += '<div class="gaprow">编号 ' + g + ' · 游戏未使用</div>';
+        }
+        prevId = id;
+        return gap + rowHTML(e);
+      }).join('');
     } else {
       html = slice.map(rowHTML).join('');
     }
@@ -5042,7 +5089,8 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
     }
 
     if (e.kind === 'set') {
-      h += '<div class="sec"><div class="sec-h">触发条件</div><p>集齐 3 件带「' + esc(e.n) + '」标签的道具即可触发；主动道具拿过就算，被动道具要带在身上（堕化以撒除外）。</p></div>';
+      h += '<div class="sec"><div class="sec-h">触发条件</div><p>集齐 3 件带「' + esc(e.n) + '」标签的道具即可触发；主动道具拿过就算，被动道具要带在身上（堕化以撒除外）。' +
+        ((e.tr && e.tr.length) ? '部分饰品也能计入或补足，见下方「相关饰品」。' : '') + '</p></div>';
       h += '<div class="sec"><div class="sec-h">套装效果</div><p>' + esc(e.effect || '') + '</p></div>';
       h += '<div class="sec"><div class="sec-h">包含道具（' + e.ids.length + '）</div><div class="setlist">';
       e.ids.forEach(function (id) {
@@ -5052,6 +5100,19 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
           tileHTML(it, ' sm') + '<span class="setitem-n">' + esc(it.n) + '</span></button>';
       });
       h += '</div></div>';
+      var trs = e.tr || [];
+      if (trs.length) {
+        h += '<div class="sec"><div class="sec-h">相关饰品（' + trs.length + '）</div><div class="settr">';
+        trs.forEach(function (x) {
+          var tk = D.trinkets.filter(function (y) { return String(y.id) === String(x.id) && y.n; })[0];
+          var cls = 'settr-row' + (x.mode === 'no' ? ' no' : (x.mode === 'alt' ? ' alt' : ''));
+          var body = '<span class="settr-t"><b>' + esc(tk ? tk.n : x.n) + '</b><em>' + esc(x.note || '') + '</em></span>';
+          h += tk
+            ? '<button class="' + cls + '" data-kind="trinket" data-id="' + tk.id + '">' + tileHTML(tk, ' sm') + body + '</button>'
+            : '<div class="' + cls + '">' + body + '</div>';
+        });
+        h += '</div></div>';
+      }
       return h;
     }
 
@@ -5118,7 +5179,9 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
                  ('icons/rooms/' + encodeURIComponent(e.id) + '.png');
       h += '<img class="roompic" src="' + rpic + '" alt="" onerror="this.remove()">';
       if (e.how) h += '<div class="sec"><div class="sec-h">出现条件</div><p>' + esc(e.how) + '</p></div>';
-      if (e.d) h += '<div class="sec"><div class="sec-h">房间内容</div><p>' + esc(e.d) + '</p></div>';
+      var roomExtra = (window.ISAAC_ROOM_EXTRA || {})[e.id];
+      var roomBody = (e.d ? esc(e.d) : '') + (roomExtra ? ((e.d ? '<br>' : '') + esc(roomExtra)) : '');
+      if (roomBody) h += '<div class="sec"><div class="sec-h">房间内容</div><p>' + roomBody + '</p></div>';
       var det = (e.raw && e.raw.detail) || null;
       if (det && det.length) {
         h += '<div class="sec"><div class="sec-h">分条明细</div><ul class="steps">' +
@@ -5133,10 +5196,6 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
           h += '<div class="sec"><div class="sec-h">机制 · ' + esc(m.t) + '</div><ul class="steps">' +
             m.steps.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
         });
-      }
-      var extra = (window.ISAAC_ROOM_EXTRA || {})[e.id];
-      if (extra) {
-        h += '<div class="sec"><div class="sec-h">攻略书补充</div><p>' + esc(extra) + '</p></div>';
       }
       var pro = (e.raw && e.raw.pro) || null;
       if (pro && pro.length) {
@@ -5163,11 +5222,12 @@ ISAAC_PICS.room['vault']='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA
           '<div class="wrow"><span class="wl">品质</span><span class="wv">' + qualDots(e.q) + '<em class="wq">' + qi + ' / 4</em></span></div>' +
           '<div class="wrow"><span class="wl">实用</span><span class="wv">' + rateBadge(e.r) + '</span></div>' +
           ((function(){ var g = (e._tags && e._tags.length) ? e._tags : (e.tg || []); return g.length ? '<div class="wrow"><span class="wl">标签</span><span class="wv wtags">' + g.map(function (t) { return '<span class="wt">' + esc(t) + '</span>'; }).join('') + '</span></div>' : ''; })()) +
-          ((function () { var tl = (e._shape || []).map(function (k) { return SHAPE_LABELS[k] || k; }).concat(e._eff || []); tl = tl.filter(function (t, i, a) { return a.indexOf(t) === i; }); return tl.length ? '<div class="wrow"><span class="wl">词条</span><span class="wv wtags">' + tl.map(function (t) { return '<span class="wt">' + esc(t) + '</span>'; }).join('') + '</span></div>' : ''; })()) +
+          ((function () { if (e.kind !== 'item') return ''; var tl = (e._shape || []).map(function (k) { return SHAPE_LABELS[k] || k; }).concat(e._eff || []); tl = tl.filter(function (t, i, a) { return a.indexOf(t) === i; }); return tl.length ? '<div class="wrow"><span class="wl">词条</span><span class="wv wtags">' + tl.map(function (t) { return '<span class="wt">' + esc(t) + '</span>'; }).join('') + '</span></div>' : ''; })()) +
+          (e.kind !== 'item' ? '' :
           '<div class="wsec">道具信息</div>' +
           '<div class="wrow"><span class="wl">充能</span><span class="wv">' + esc(charge) + '</span></div>' +
           '<div class="wsec">道具池</div>' +
-          '<div class="wrow"><span class="wl">来源</span><span class="wv">' + esc((e._pools && e._pools.length) ? e._pools.join(' · ') : '—') + '</span></div>' +
+          '<div class="wrow"><span class="wl">来源</span><span class="wv">' + esc((e._pools && e._pools.length) ? e._pools.join(' · ') : '—') + '</span></div>') +
         '</div>';
       }
       if (e.d) h += '<div class="sec"><div class="sec-h">效果</div><p>' + esc(e.d) + '</p></div>';
