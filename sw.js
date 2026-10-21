@@ -1,5 +1,5 @@
 /* 以撒指北 · 离线缓存 */
-const CACHE = 'isaac-guide-v6.2';
+const CACHE = 'isaac-guide-v6.3';
 const ASSETS = ['./index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (e) => {
