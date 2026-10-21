@@ -1921,6 +1921,16 @@ button { font-family: inherit; }
   letter-spacing: .04em;
   text-align: center;
   background: rgba(255,255,255,.02);
+}
+
+/* iPhone 窄屏：道具网格改成 5 列（3 列 → 5 列） */
+@media (max-width: 420px) {
+  .igrid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+  .ig-tile { padding: 8px 3px 7px; gap: 5px; border-radius: 12px; }
+  .ig-tile .tile.lg { width: 54px; height: 54px; border-radius: 13px; --cell: 54px; font-size: 24px; }
+  .ig-name { font-size: 9.5px; line-height: 1.22; }
+  .ig-meta { min-height: 15px; }
+  .ig-meta .rate { font-size: 10px; padding: 0 5px; min-width: 0; height: 15px; line-height: 15px; }
 }</style>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" type="image/png" href="./icon-192.png">
@@ -1937,7 +1947,7 @@ button { font-family: inherit; }
         <span class="brand-mark"><img id="brandImg" alt="以撒" draggable="false"></span>
         <div class="brand-text">
           <h1>以撒指北<span class="maker">制作人 陈卿殊</span></h1>
-          <p>Repentance · 全 DLC · V6.2</p>
+          <p>Repentance · 全 DLC · V6.3</p>
         </div>
       </div>
       <div class="topbar-actions">
